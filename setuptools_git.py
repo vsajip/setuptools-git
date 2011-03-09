@@ -4,8 +4,19 @@
 A hook into setuptools for Git.
 """
 
+import locale
 import os
 from subprocess import Popen, PIPE
+import sys
+
+if sys.version_info[0] >= 3:
+    def u(s, encoding):
+        if not isinstance(s, str):
+            s = s.decode(encoding)
+        return s
+else:
+    def u(s, encoding):
+        return s
 
 def gitlsfiles(dirname=""):
     try:
@@ -20,7 +31,8 @@ def gitlsfiles(dirname=""):
     if p.wait():
         # git chocked
         return []
-    return [f.strip() for f in files]
+    encoding = locale.getpreferredencoding()
+    return [u(f.strip(), encoding) for f in files]
 
 if __name__ == "__main__":
     import sys

@@ -14,7 +14,7 @@ except ImportError:
     from setuptools import setup, find_packages
 
 
-version = '0.4.1'
+version = '0.4.2'
 
 long_desc="""
 This is a plugin for setup tools that enables Git integration.  Once
@@ -40,7 +40,9 @@ setup(
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "License :: Public Domain",
+        "Operating System :: OS Independent",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
         ],
     py_modules=["setuptools_git"],
